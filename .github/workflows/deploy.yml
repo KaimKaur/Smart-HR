@@ -6,8 +6,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  BACKEND_IMAGE: ghcr.io/${{ github.repository }}/backend
-  FRONTEND_IMAGE: ghcr.io/${{ github.repository }}/frontend
 
 jobs:
   build-and-push:
@@ -18,6 +16,12 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set image names (GHCR tags must be lowercase)
+        run: |
+          REPO_LC=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "BACKEND_IMAGE=ghcr.io/${REPO_LC}/backend" >> "$GITHUB_ENV"
+          echo "FRONTEND_IMAGE=ghcr.io/${REPO_LC}/frontend" >> "$GITHUB_ENV"
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -57,6 +61,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set image names (GHCR tags must be lowercase)
+        run: |
+          REPO_LC=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "BACKEND_IMAGE=ghcr.io/${REPO_LC}/backend" >> "$GITHUB_ENV"
+          echo "FRONTEND_IMAGE=ghcr.io/${REPO_LC}/frontend" >> "$GITHUB_ENV"
 
       - name: Copy compose files
         uses: appleboy/scp-action@v0.1.7
