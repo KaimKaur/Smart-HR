@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+coverage/
+.env
+.env.*
+*.log
+npm-debug.log*
+.DS_Store
+.git/
+src/**/*.test.ts
+src/**/*.test.tsx

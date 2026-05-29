@@ -1,0 +1,19 @@
+[project]
+name = "smart-hr-backend"
+version = "0.1.0"
+description = "Smart HR API — FastAPI backend"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "--cov=app --cov-report=term-missing --cov-report=html:htmlcov --cov-fail-under=55"
