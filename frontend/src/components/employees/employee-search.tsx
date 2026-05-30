@@ -77,6 +77,7 @@ export function EmployeeSearch({
               <button
                 type="button"
                 role="option"
+                aria-selected={value === item.id}
                 className={cn(
                   "w-full rounded-md px-2 py-2 text-left text-sm hover:bg-muted",
                   value === item.id && "bg-muted",
